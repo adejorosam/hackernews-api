@@ -32,7 +32,7 @@ yarn start:dev
 npm run start:dev
 ```
 - This will start a new server on port 3000
-- To get the recent stories top words in the title of last 25 stories, visit http://localhost:3000/top-words/new-stories
+- To get the top words in the title of last 25 stories, visit http://localhost:3000/top-words/new-stories
 
 ## Test
 
