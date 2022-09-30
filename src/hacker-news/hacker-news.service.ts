@@ -12,11 +12,11 @@ export class HackerNewsService {
     return this.httpService.axiosRef.get(`${this.baseUrl}/newstories.json`);
   }
 
-  getStroryById(id: number): Promise<AxiosResponse> {
+  getStoryById(id: number): Promise<AxiosResponse> {
     return this.httpService.axiosRef.get(`${this.baseUrl}/item/${id}.json`);
   }
 
   getStoriesByIds(ids: number[]): Promise<AxiosResponse[]> {
-    return Promise.all(ids.map((id: number) => this.getStroryById(id)));
+    return Promise.all(ids.map((id: number) => this.getStoryById(id)));
   }
 }

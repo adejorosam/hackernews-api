@@ -25,7 +25,7 @@ describe('TopWordsController', () => {
       const result: TopWords[] = [
         {
           word: 'word',
-          numberOfOccurence: 1,
+          numberOfOccurrence: 1,
         },
       ];
 

@@ -45,13 +45,13 @@ describe('HackerNewsService', () => {
     });
   });
 
-  describe('getStroryById', () => {
+  describe('getStoryById', () => {
     it('can a story details by id', async () => {
       mockedAxiosResponse = { ...mockedAxiosResponse, data: mockedStory };
 
-      jest.spyOn(service, 'getStroryById').mockImplementation(() => Promise.resolve(mockedAxiosResponse));
+      jest.spyOn(service, 'getStoryById').mockImplementation(() => Promise.resolve(mockedAxiosResponse));
 
-      expect(await service.getStroryById(8863)).toEqual(mockedAxiosResponse);
+      expect(await service.getStoryById(8863)).toEqual(mockedAxiosResponse);
     });
 
     describe('getStoriesByIds', () => {

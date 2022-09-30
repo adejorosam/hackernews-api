@@ -14,20 +14,20 @@ describe('TopWordsService', () => {
     service = await module.resolve<TopWordsService>(TopWordsService);
   });
 
-  describe('getMostOccuringWords', () => {
-    it('can get the most occuring words', () => {
+  describe('getMostOccurringWords', () => {
+    it('can get the most occurring words', () => {
       const wordsArrays = ['this is a first test', 'this is a second test', 'this is a third test'];
 
-      const topWords = service.getMostOccuringWords(wordsArrays);
+      const topWords = service.getMostOccurringWords(wordsArrays);
 
       expect(topWords).toEqual([
-        { word: 'this', numberOfOccurence: 3 },
-        { word: 'is', numberOfOccurence: 3 },
-        { word: 'a', numberOfOccurence: 3 },
-        { word: 'test', numberOfOccurence: 3 },
-        { word: 'first', numberOfOccurence: 1 },
-        { word: 'second', numberOfOccurence: 1 },
-        { word: 'third', numberOfOccurence: 1 },
+        { word: 'this', numberOfOccurrence: 3 },
+        { word: 'is', numberOfOccurrence: 3 },
+        { word: 'a', numberOfOccurrence: 3 },
+        { word: 'test', numberOfOccurrence: 3 },
+        { word: 'first', numberOfOccurrence: 1 },
+        { word: 'second', numberOfOccurrence: 1 },
+        { word: 'third', numberOfOccurrence: 1 },
       ]);
     });
   });

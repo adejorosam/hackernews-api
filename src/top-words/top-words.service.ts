@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { HackerNewsService } from '../hacker-news/hacker-news.service';
-import { TopWords } from './top-words.interface';
+import {Injectable} from '@nestjs/common';
+import {HackerNewsService} from '../hacker-news/hacker-news.service';
+import {TopWords} from './top-words.interface';
 
 @Injectable()
 export class TopWordsService {
@@ -16,34 +16,32 @@ export class TopWordsService {
 
   public async getTopWordsInTitle(storyIds: number[]): Promise<TopWords[]> {
     // get the stories by ids
-    const topStories = await this.hackerNewsService.getStoriesByIds(storyIds);
+    const stories = await this.hackerNewsService.getStoriesByIds(storyIds);
 
     // get the titles of all stories
-    const topStoriesTitles = topStories.map((story) => story.data.title);
+    const storiesTitles = stories.map((story) => story.data.title);
 
-    // get the most occuring words in the titles
-    const topWords = this.getMostOccuringWords(topStoriesTitles);
-
-    return topWords;
+    // get the most occurring words in the titles
+    return this.getMostOccurringWords(storiesTitles);
   }
 
-  public getMostOccuringWords(arr: string[]): TopWords[] {
+  public getMostOccurringWords(arr: string[]): TopWords[] {
     // get all words from all titles
     const words = arr.join(' ').split(' ');
 
-    // count the occurence of each word
+    // count the occurrence of each word
     const wordCount = words.reduce((acc, word) => {
       acc[word] = acc[word] ? acc[word] + 1 : 1;
       return acc;
     }, {});
 
-    // sort the words by occurence
+    // sort the words by occurrence
     const sortedWords = Object.keys(wordCount).sort((a, b) => wordCount[b] - wordCount[a]);
 
     // return the top 10 words
     return sortedWords.slice(0, 10).map((word) => ({
       word,
-      numberOfOccurence: wordCount[word],
+      numberOfOccurrence: wordCount[word],
     }));
   }
 }
