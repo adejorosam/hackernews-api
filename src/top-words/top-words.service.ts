@@ -25,9 +25,9 @@ export class TopWordsService {
     return this.getMostOccurringWords(storiesTitles);
   }
 
-  public getMostOccurringWords(arr: string[]): TopWords[] {
-    // get all words from all titles
-    const words = arr.join(' ').split(' ');
+  public getMostOccurringWords(titles: string[]): TopWords[] {
+    // join all titles into one string and split it into words
+    const words = titles.join(' ').split(' ');
 
     // count the occurrence of each word
     const wordCount = words.reduce((acc, word) => {
