@@ -12,6 +12,10 @@ export class HackerNewsService {
     return this.httpService.axiosRef.get(`${this.baseUrl}/newstories.json`);
   }
 
+  getTopStories(): Promise<AxiosResponse> {
+    return this.httpService.axiosRef.get(`${this.baseUrl}/topstories.json`);
+  }
+
   getStoryById(id: number): Promise<AxiosResponse> {
     return this.httpService.axiosRef.get(`${this.baseUrl}/item/${id}.json`);
   }

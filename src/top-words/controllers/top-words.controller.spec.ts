@@ -1,9 +1,9 @@
 import { CacheModule } from '@nestjs/common';
-import { HackerNewsModule } from '../hacker-news/hacker-news.module';
-import { TopWords } from './top-words.interface';
+import { HackerNewsModule } from '../../hacker-news/hacker-news.module';
+import { TopWords } from '../interfaces/top-words.interface';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TopWordsController } from './top-words.controller';
-import { TopWordsService } from './top-words.service';
+import { TopWordsService } from '../../top-words/services/top-words.service';
 
 describe('TopWordsController', () => {
   let service: TopWordsService;

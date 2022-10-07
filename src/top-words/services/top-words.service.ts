@@ -1,6 +1,7 @@
-import {Injectable} from '@nestjs/common';
-import {HackerNewsService} from '../hacker-news/hacker-news.service';
-import {TopWords} from './top-words.interface';
+import { Injectable } from '@nestjs/common';
+import { HackerNewsService } from '../../hacker-news/services/hacker-news.service';
+import { TopWords } from '../interfaces/top-words.interface';
+import * as moment from 'moment';
 
 @Injectable()
 export class TopWordsService {
@@ -12,6 +13,34 @@ export class TopWordsService {
 
     // get the top words in the titles of the new 25 stories
     return this.getTopWordsInTitle(newStoriesIds.data.slice(0, 25));
+  }
+
+  public async getTopWordsInTopStories(): Promise<TopWords[]> {
+    // get the ids of top stories - 500 ids are returned
+    const topStoriesIds = await this.hackerNewsService.getTopStories();
+
+    // get the top words in the titles of the top 500 stories
+    return this.getTopWordsInTitle(topStoriesIds.data);
+  }
+
+  public async getTopWordsInLastWeekStories(): Promise<TopWords[]> {
+    // get the ids of new stories
+    const newStoriesIds = await this.hackerNewsService.getNewStories();
+
+    // get the stories by ids
+    const stories = await this.hackerNewsService.getStoriesByIds(newStoriesIds.data);
+
+    // get the unix timestamp of the beginning and end of the last week
+    const startOfLastWeek = moment().startOf('week').subtract(1, 'week').unix();
+    const endOfLastWeek = moment().endOf('week').subtract(1, 'week').unix();
+
+    // get the titles of all stories created last week
+    const storiesTitles = stories
+      .filter((story) => story.data.time >= startOfLastWeek && story.data.time <= endOfLastWeek)
+      .map((story) => story.data.title);
+
+    // get the most occurring words in the titles
+    return this.getMostOccurringWords(storiesTitles);
   }
 
   public async getTopWordsInTitle(storyIds: number[]): Promise<TopWords[]> {

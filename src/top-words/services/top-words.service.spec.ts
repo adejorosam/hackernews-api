@@ -1,4 +1,4 @@
-import { HackerNewsModule } from '../hacker-news/hacker-news.module';
+import { HackerNewsModule } from '../../hacker-news/hacker-news.module';
 import { Test, TestingModule } from '@nestjs/testing';
 import { TopWordsService } from './top-words.service';
 

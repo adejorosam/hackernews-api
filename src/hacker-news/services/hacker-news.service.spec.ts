@@ -28,6 +28,7 @@ describe('HackerNewsService', () => {
   };
 
   let service: HackerNewsService;
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [HttpModule],
@@ -42,6 +43,14 @@ describe('HackerNewsService', () => {
       jest.spyOn(service, 'getNewStories').mockImplementation(() => Promise.resolve(mockedAxiosResponse));
 
       expect(await service.getNewStories()).toEqual(mockedAxiosResponse);
+    });
+  });
+
+  describe('getTopStories', () => {
+    it('can get the list of top stories', async () => {
+      jest.spyOn(service, 'getTopStories').mockImplementation(() => Promise.resolve(mockedAxiosResponse));
+
+      expect(await service.getTopStories()).toEqual(mockedAxiosResponse);
     });
   });
 
