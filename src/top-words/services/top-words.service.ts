@@ -20,7 +20,7 @@ export class TopWordsService {
     const topStoriesIds = await this.hackerNewsService.getTopStories();
 
     // get the top words in the titles of the top 500 stories
-    return this.getTopWordsInTitle(topStoriesIds.data.slice(0, 50));
+    return this.getTopWordsInTitle(topStoriesIds.data);
   }
 
   public async getTopWordsInLastWeekStories(): Promise<TopWords[]> {
@@ -28,7 +28,7 @@ export class TopWordsService {
     const newStoriesIds = await this.hackerNewsService.getNewStories();
 
     // get the stories by ids
-    const stories = await this.hackerNewsService.getStoriesByIds(newStoriesIds.data.slice(0, 25));
+    const stories = await this.hackerNewsService.getStoriesByIds(newStoriesIds.data);
 
     // get the unix timestamp of the beginning and end of the last week
     const startOfLastWeek = moment().startOf('week').subtract(1, 'week').unix();
